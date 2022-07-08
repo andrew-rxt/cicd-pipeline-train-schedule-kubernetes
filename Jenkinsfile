@@ -51,7 +51,7 @@ pipeline {
                         manifestPattern: 'k8s/production/',
                         credentialsId: "gke-sa-for-jenkins",
                         verifyDeployments: true])
-                }
+               
             }
         }
     }

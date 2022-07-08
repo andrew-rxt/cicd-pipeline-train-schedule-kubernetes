@@ -44,11 +44,14 @@ pipeline {
             steps {
                 input 'Deploy to Production?'
                 milestone(1)
-                kubernetesDeploy(
-                    kubeconfigId: 'kubeconfig',
-                    configs: 'train-schedule-kube.yml',
-                    enableConfigSubstitution: true
-                )
+                step([$class: 'KubernetesEngineBuilder', 
+                        projectId: "holden-andrew-jenkins",
+                        clusterName: "production",
+                        zone: "us-central1-c",
+                        manifestPattern: 'k8s/production/',
+                        credentialsId: "gke-sa-for-jenkins",
+                        verifyDeployments: true])
+                }
             }
         }
     }

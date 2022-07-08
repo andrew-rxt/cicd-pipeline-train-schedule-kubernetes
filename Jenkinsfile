@@ -49,7 +49,7 @@ pipeline {
                         clusterName: "train-schedule-gke-demo-cluster",
                         zone: "us-central1-c",
                         manifestPattern: 'k8s/production/',
-                        credentialsId: "gke-sa-for-jenkins",
+                        credentialsId: "holden-andrew-jenkins",
                         verifyDeployments: true])
                
             }

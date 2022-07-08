@@ -50,7 +50,7 @@ pipeline {
                         zone: "us-central1-c",
                         manifestPattern: 'train-schedule-kube.yml',
                         credentialsId: "holden-andrew-jenkins",
-                        verifyDeployments: true])
+                        verifyDeployments: false])
                
             }
         }

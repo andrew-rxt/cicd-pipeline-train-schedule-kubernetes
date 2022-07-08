@@ -12,9 +12,9 @@ pipeline {
             }
         }
         stage('Build Docker Image') {
-            when {
-                branch 'master'
-            }
+//             when {
+//                 branch 'master'
+//             }
             steps {
                 script {
                     app = docker.build(DOCKER_IMAGE_NAME)
@@ -25,9 +25,9 @@ pipeline {
             }
         }
         stage('Push Docker Image') {
-            when {
-                branch 'master'
-            }
+//             when {
+//                 branch 'master'
+//             }
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
@@ -38,15 +38,15 @@ pipeline {
             }
         }
         stage('DeployToProduction') {
-            when {
-                branch 'master'
-            }
+//             when {
+//                 branch 'master'
+//             }
             steps {
                 input 'Deploy to Production?'
                 milestone(1)
                 step([$class: 'KubernetesEngineBuilder', 
                         projectId: "holden-andrew-jenkins",
-                        clusterName: "production",
+                        clusterName: "train-schedule-gke-demo-cluster",
                         zone: "us-central1-c",
                         manifestPattern: 'k8s/production/',
                         credentialsId: "gke-sa-for-jenkins",

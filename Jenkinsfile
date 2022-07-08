@@ -48,7 +48,7 @@ pipeline {
                         projectId: "holden-andrew-jenkins",
                         clusterName: "train-schedule-gke-demo-cluster",
                         zone: "us-central1-c",
-                        manifestPattern: 'k8s/production/',
+                        manifestPattern: 'train-schedule-kube.yml',
                         credentialsId: "holden-andrew-jenkins",
                         verifyDeployments: true])
                

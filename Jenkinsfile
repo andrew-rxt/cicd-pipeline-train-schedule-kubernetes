@@ -44,14 +44,18 @@ pipeline {
             steps {
                 input 'Deploy to Production?'
                 milestone(1)
-                step([$class: 'KubernetesEngineBuilder', 
-                        projectId: "holden-andrew-jenkins",
-                        clusterName: "train-schedule-gke-demo-cluster",
-                        zone: "us-central1-c",
-                        manifestPattern: 'train-schedule-kube.yml',
-                        credentialsId: "holden-andrew-jenkins",
-                        verifyDeployments: false])
-               
+                kubernetesDeploy(
+                    kubeconfigId: 'kubeconfig',
+                    configs: 'train-schedule-kube.yml',
+                    enableConfigSubstitution: true
+                )
+//                 step([$class: 'KubernetesEngineBuilder', 
+//                         projectId: "holden-andrew-jenkins",
+//                         clusterName: "train-schedule-gke-demo-cluster",
+//                         zone: "us-central1-c",
+//                         manifestPattern: 'train-schedule-kube.yml',
+//                         credentialsId: "holden-andrew-jenkins",
+//                         verifyDeployments: false])               
             }
         }
     }
